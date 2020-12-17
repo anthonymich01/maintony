@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  db:
+    build:
+      context: db
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mainthony
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:9555"
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    env_file:
+      - ./app/.env
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
