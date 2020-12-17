@@ -60,3 +60,14 @@ INSERT INTO "students" ("full_name") VALUES ('Lily-Anne Armitage'),
                                             ('Waqas Sykes'),
                                             ('Libbi Anthony'),
                                             ('Brook Rowland');
+
+INSERT INTO "courses" ("name") VALUES ('Agricultural Engineering'),
+                                      ('Architectural Engineering'),
+                                      ('Biochemical Engineering'),
+                                      ('Biological Engineering'),
+                                      ('Biomedical Engineering'),
+                                      ('Chemical Engineering'),
+                                      ('Civil Engineering'),
+                                      ('Computer Engineering'),
+                                      ('Construction Engineering'),
+                                      ('Electrical Engineering');

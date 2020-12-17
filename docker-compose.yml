@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.9"
 
 services:
   db:
@@ -6,13 +6,13 @@ services:
       context: db
       dockerfile: Dockerfile
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./db/data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: mainthony
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: maintony
+      POSTGRES_USER: anthony
+      POSTGRES_PASSWORD: anthony
     ports:
-      - "5432:9555"
+      - "9100:5432"
   app:
     build:
       context: app
@@ -26,4 +26,4 @@ services:
     depends_on:
       - db
     ports:
-      - 3000:3000
+      - "9101:3000"

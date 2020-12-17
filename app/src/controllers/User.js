@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
 import { saltRounds } from "../constant/bcrypt"
-import * as db from "../db"
+import db from "../db"
 import { getUserByUsername, getUserIdById } from "../db/query"
 
 export const getUserDetailById = async (id) => {
@@ -10,9 +10,7 @@ export const getUserDetailById = async (id) => {
       const userDetail = res.rows[0]
       return {
         id: userDetail.id,
-        full_name: userDetail.full_name,
-        email: userDetail.email,
-        role: userDetail.role
+        username: userDetail.username
       }
     }
     return null

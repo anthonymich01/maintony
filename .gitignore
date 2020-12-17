@@ -30,3 +30,6 @@ app/.env*
 
 # vercel
 app/.vercel
+
+# db data
+db/data

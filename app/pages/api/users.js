@@ -1,10 +1,11 @@
-import * as db from "../../src/db"
+import db from "../../src/db"
 
-export default (req, res) => {
+export default async (req, res) => {
   if (req.method === "GET") {
     // Process a GET request
+    const response = await db.query("select * from students")
     res.statusCode = 200
-    res.json({ name: "John Doe" })
+    res.json({ name: response.rows })
   } else if (req.method === "POST") {
     // Process a POST request
   } else {
