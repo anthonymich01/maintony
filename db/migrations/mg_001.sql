@@ -8,12 +8,16 @@ CREATE TABLE "users" (
 
 CREATE TABLE "students" (
   "id" SERIAL PRIMARY KEY,
-  "full_name" varchar
+  "full_name" varchar,
+  "created_at" timestamptz DEFAULT (now()),
+  "deleted_at" timestamptz DEFAULT null
 );
 
 CREATE TABLE "courses" (
   "id" SERIAL PRIMARY KEY,
-  "name" varchar
+  "name" varchar,
+  "created_at" timestamptz DEFAULT (now()),
+  "deleted_at" timestamptz DEFAULT null
 );
 
 CREATE TABLE "assignments" (

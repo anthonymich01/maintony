@@ -1,0 +1,38 @@
+@import "./constants";
+
+.root {
+  height: 100vh;
+
+  .sidebar {
+    width: 300px;
+    float: left;
+    height: 100%;
+    padding: 15px;
+    background-color: $c-darkest;
+    color: $c-light;
+
+    .title {
+      margin: 15px 0 20px;
+      color: $c-primary;
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
+  .content {
+    float: right;
+    height: 100%;
+    width: calc(100% - 300px);
+    padding: 30px 20px;
+    background-color: $c-light;
+    color: $c-darkest;
+
+    .contentTitle {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+  }
+}
