@@ -1,7 +1,7 @@
 import Router from "next/router"
 import { Button, Icon, Segment } from "semantic-ui-react"
 
-export default ({ title, iconTitle, desc, color, actionText, link }) => {
+export const GoToSegment = ({ title, iconTitle, desc, color, actionText, link }) => {
   return (
     <Segment raised padded stacked color={color}>
       <h3>
@@ -17,3 +17,5 @@ export default ({ title, iconTitle, desc, color, actionText, link }) => {
     </Segment>
   )
 }
+
+export default GoToSegment

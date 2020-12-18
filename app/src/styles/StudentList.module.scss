@@ -1,0 +1,29 @@
+@import "./constants";
+
+.studentSegment {
+  .studentName {
+    font-size: 15px;
+    font-weight: 600;
+    color: $c-darkest;
+    cursor: pointer;
+
+    span {
+      margin-right: 10px !important;
+      font-weight: 600;
+      color: $c-primary;
+    }
+  }
+
+  .subTitle {
+    color: $c-darkest;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .assignment {
+    text-align: center;
+    margin-bottom: 7px;
+  }
+}

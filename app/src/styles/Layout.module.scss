@@ -23,6 +23,7 @@
 
   .content {
     float: right;
+    overflow-y: auto;
     height: 100%;
     width: calc(100% - 300px);
     padding: 30px 20px;
