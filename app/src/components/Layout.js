@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Header from "next/head"
 import Router from "next/router"
 import Link from "next/link"
+import { logout } from "../util/auth"
 import { Icon, Menu } from "semantic-ui-react"
 import style from "../styles/Layout.module.scss"
 
@@ -32,7 +33,7 @@ export default class Layout extends Component {
                 <Icon name="book" />
                 Courses
               </Menu.Item>
-              <Menu.Item name="sign out" onClick={() => Router.push("/courses")}>
+              <Menu.Item name="sign out" onClick={logout}>
                 <Icon name="sign out" />
                 Logout
               </Menu.Item>

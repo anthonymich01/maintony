@@ -1,10 +1,10 @@
 import React, { Component } from "react"
-import { Grid } from "semantic-ui-react"
+import { withAuthSync } from "../src/util/auth"
 import GoToSegment from "../src/components/GoToSegment"
 import Layout from "../src/components/Layout"
-import style from "../src/styles/Home.module.scss"
+import { Grid } from "semantic-ui-react"
 
-export default class index extends Component {
+class Home extends Component {
   render() {
     return (
       <Layout title="Home" contentTitle="Home">
@@ -24,8 +24,7 @@ export default class index extends Component {
             <GoToSegment
               title="Courses List"
               iconTitle="book"
-              desc="In this section, you can manage your courses, add / remove courses from the student, add new course, &amp; remove
-                course from your list."
+              desc="In this section, you can manage your courses, add / remove courses from your list."
               color="blue"
               actionText="Go to Courses List"
               link="/courses"
@@ -36,3 +35,5 @@ export default class index extends Component {
     )
   }
 }
+
+export default withAuthSync(Home)

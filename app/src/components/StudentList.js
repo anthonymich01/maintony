@@ -45,10 +45,11 @@ export default class StudentList extends Component {
   }
 
   render() {
-    const { student, num } = this.props
+    const { student, num, handleDeleteStudent } = this.props
     const { open, courses, loading } = this.state
     const attendCourses = courses.filter((v) => v.assignment_id)
     const remainingCourses = courses.filter((v) => v.assignment_id === null)
+    const firstName = student.full_name.split(" ")[0]
 
     return (
       <Segment className={style.studentSegment}>
@@ -65,7 +66,7 @@ export default class StudentList extends Component {
             </Placeholder>
           ) : (
             <>
-              {attendCourses.length > 0 && (
+              {attendCourses.length > 0 ? (
                 <Segment raised basic compact>
                   <p className={style.subTitle}>Courses:</p>
                   {attendCourses.map((v) => (
@@ -77,6 +78,8 @@ export default class StudentList extends Component {
                     </p>
                   ))}
                 </Segment>
+              ) : (
+                <h4>{firstName} doesn't have course assigned.</h4>
               )}
               <div>
                 <Dropdown text="Add Course" className="teal" floating button>
@@ -88,7 +91,7 @@ export default class StudentList extends Component {
                     ))}
                   </Dropdown.Menu>
                 </Dropdown>
-                <Button floated="right" negative icon labelPosition="right">
+                <Button floated="right" negative icon labelPosition="right" onClick={() => handleDeleteStudent(student.id)}>
                   Remove Student
                   <Icon name="trash" />
                 </Button>

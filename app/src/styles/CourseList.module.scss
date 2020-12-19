@@ -1,0 +1,18 @@
+@import "./constants";
+
+.courseName {
+  font-size: 15px;
+  font-weight: 600;
+  color: $c-darkest;
+
+  span {
+    margin-right: 10px !important;
+    font-weight: 600;
+    color: $c-primary;
+  }
+
+  .delButton {
+    position: relative;
+    top: -4px;
+  }
+}

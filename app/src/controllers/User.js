@@ -1,17 +1,18 @@
 import bcrypt from "bcrypt"
-import { saltRounds } from "../constant/bcrypt"
+import { hashRounds } from "../constant/bcrypt"
 import db from "../db"
-import { getUserByUsername, getUserIdById } from "../db/query"
+import jwt from "jsonwebtoken"
+import { getUserByUsername, getUserById, insertNewUserByUsernamePassword } from "../db/query"
 
-export const getUserDetailById = async (id) => {
+export const getUserByToken = async (token) => {
   try {
-    const res = await db.query(getUserIdById, [id])
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    if (!decoded) {
+      return null
+    }
+    const res = await db.query(getUserById, [decoded.userId])
     if (res.rows[0]) {
-      const userDetail = res.rows[0]
-      return {
-        id: userDetail.id,
-        username: userDetail.username
-      }
+      return res.rows[0]["id"]
     }
     return null
   } catch (error) {
@@ -37,19 +38,21 @@ export const createUserByUsernamePassword = async (username, password) => {
   const trimmedUsername = username.trim()
 
   const checkUserUsername = await isUsernameDuplicated(trimmedUsername)
-  if (checkUserUsername) return { status: false, message: "Username already taken." }
+  if (checkUserUsername) return { access_token: "" }
 
-  const hashedPassword = await bcrypt.hash(password, saltRounds)
+  const hashedPassword = await bcrypt.hash(password, hashRounds)
 
   try {
     const res = await db.query(insertNewUserByUsernamePassword, [trimmedUsername, hashedPassword])
     const newUserId = res.rows[0]["id"]
-    await db.query(insertNewDefaultWatchlistByUserId, [newUserId])
-
-    return { status: true, message: "" }
+    const data = {
+      userId: +newUserId
+    }
+    const accessToken = jwt.sign(data, process.env.JWT_SECRET)
+    return { access_token: accessToken }
   } catch (error) {
     console.log(error)
-    return { status: false, message: error }
+    return { access_token: "" }
   }
 }
 
@@ -59,11 +62,17 @@ export const loginUserByUsernamePassword = async (username, password) => {
     if (res.rows[0]) {
       const userData = res.rows[0]
       const checkPassword = await bcrypt.compare(password, userData.password)
-      if (checkPassword) return { status: true, message: "", userId: +userData.id }
+      if (checkPassword) {
+        const data = {
+          userId: +res.rows[0]["id"]
+        }
+        const accessToken = jwt.sign(data, process.env.JWT_SECRET)
+        return { access_token: accessToken }
+      }
     }
-    return { status: false, message: "Credentials are incorrect." }
+    return { access_token: "" }
   } catch (error) {
     console.log(error)
-    return { status: false, message: error }
+    return { access_token: "" }
   }
 }

@@ -1,1 +1,1 @@
-export const saltRounds = 10
+export const hashRounds = 10
