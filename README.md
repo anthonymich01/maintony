@@ -20,9 +20,9 @@ or. . . You can register a new account yourself!
 1. **Clone** this repo
 2. **Create & Edit** `.env` file under `maintony/app/`
 3. **Type** `NEXT_PUBLIC_BASE_URL=http://localhost:9101`
-4. **Change** `http://localhost:9101` to your domain or leave it if you are on local machine
+4. **Change** `http://localhost:9101` to your domain ``https://example.com`` or leave it if you are on a local machine
 5. **Edit** `maintony/docker-compose.yml`
-6. **Find** `JWT_SECRET` under `app: environment`
+6. **Find** `JWT_SECRET` under `app: environment:`
 7. **Change** `I-Love-KFC-Hot-Crispy-Chicken-Bucket-9-Pcs` to your JWT secret key of your choice
 8. **Open** terminal and make sure you are in **maintony** dir
 9. **Run** `docker-compose up`
@@ -36,7 +36,7 @@ or. . . You can register a new account yourself!
 - Assign Students to Courses 🏫
 - Students Pagination 🔖
 - **_somewhat_** Mobile Friendly 😂
-- Database files will be **persisted** in `maintony/db/data/` so you can easily backup / restore your database files
+- Database will be **persisted** in `maintony/db/data/` so you can easily backup / restore your database files 💾
 
 ## Stacks
 
