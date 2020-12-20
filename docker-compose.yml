@@ -12,7 +12,7 @@ services:
       POSTGRES_USER: anthony
       POSTGRES_PASSWORD: anthony
     ports:
-      - "9100:5432"
+      - "5432"
   app:
     build:
       context: app
@@ -21,14 +21,12 @@ services:
       - ./app:/usr/src/app
       - /usr/src/app/node_modules
       - /usr/src/app/.next
-    env_file:
-      - ./app/.env
     environment:
       PGHOST: db
       PGDATABASE: maintony
       PGUSER: anthony
       PGPASSWORD: anthony
-      NEXT_PUBLIC_BASE_URL: http://localhost:9101
+      JWT_SECRET: I-Love-KFC-Hot-Crispy-Chicken-Bucket-9-Pcs
     depends_on:
       - db
     ports:
