@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { getCourses, addCourse, deleteCourseById } from "../src/api"
 import { withAuthSync } from "../src/util/auth"
+import handleError from "../src/util/handleError"
 import Layout from "../src/components/Layout"
 import CoursesList from "../src/components/CourseList"
 import { Button, Input, Label, Placeholder } from "semantic-ui-react"
@@ -13,7 +14,7 @@ class Courses extends Component {
       const res = await getCourses()
       this.setState({ courses: res.data.courses })
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
   }
 
@@ -25,7 +26,7 @@ class Courses extends Component {
       const res = await getCourses()
       this.setState({ courses: res.data.courses })
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
     this.setState({ s: "" })
   }
@@ -36,7 +37,7 @@ class Courses extends Component {
       const res = await getCourses()
       this.setState({ courses: res.data.courses })
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
   }
 
@@ -62,7 +63,9 @@ class Courses extends Component {
             </Placeholder.Paragraph>
           </Placeholder>
         ) : (
-          courses.map((v, i) => <CoursesList key={v.id} course={v} num={i + 1} deleteCourse={this.handleDeleteCourse} />)
+          courses.map((v, i) => (
+            <CoursesList key={v.id} course={v} num={i + 1} deleteCourse={this.handleDeleteCourse} />
+          ))
         )}
       </Layout>
     )

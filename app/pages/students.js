@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { getStudents, addStudent, deleteStudentById } from "../src/api"
-import Layout from "../src/components/Layout"
+import handleError from "../src/util/handleError"
 import { withAuthSync } from "../src/util/auth"
+import Layout from "../src/components/Layout"
 import StudentList from "../src/components/StudentList"
 import { Button, Input, Label, Placeholder } from "semantic-ui-react"
 
@@ -21,7 +22,7 @@ class Students extends Component {
     try {
       await addStudent(trimmedName)
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
     this.setState({ s: "" })
   }
@@ -33,7 +34,7 @@ class Students extends Component {
       const res = await getStudents(LIMIT, page)
       this.setState({ students: res.data.students })
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
   }
 
@@ -83,7 +84,12 @@ class Students extends Component {
           </Placeholder>
         ) : (
           students.map((v, i) => (
-            <StudentList key={v.id} student={v} num={i + studentNumber} handleDeleteStudent={this.handleDeleteStudent} />
+            <StudentList
+              key={v.id}
+              student={v}
+              num={i + studentNumber}
+              handleDeleteStudent={this.handleDeleteStudent}
+            />
           ))
         )}
         <Button icon="angle left" color="teal" onClick={this.handlePrevPage} />

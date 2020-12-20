@@ -1,6 +1,7 @@
 import { getStudentsList, addStudent, deleteStudent } from "../../src/controllers/Student"
+import auth from "../../src/middleware/auth"
 
-export default async (req, res) => {
+const students = async (req, res) => {
   if (req.method === "GET") {
     const { limit = 10, offset = 0 } = req.query
     const response = await getStudentsList(limit, offset)
@@ -25,3 +26,5 @@ export default async (req, res) => {
     res.status(401).send("Method not supported.")
   }
 }
+
+export default auth(students)

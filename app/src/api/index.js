@@ -1,8 +1,13 @@
 import axios from "axios"
 import Cookie from "js-cookie"
 
+const token = Cookie.get("token") || ""
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL + "/api"
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL + "/api",
+  headers: {
+    Authorization: `bearer ${token}`
+  }
 })
 
 export const loginAttempt = (username, password) => {

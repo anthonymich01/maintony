@@ -1,6 +1,7 @@
 import { getCoursesList, addCourse, deleteCourse } from "../../src/controllers/Course"
+import auth from "../../src/middleware/auth"
 
-export default async (req, res) => {
+const courses = async (req, res) => {
   if (req.method === "GET") {
     const response = await getCoursesList()
     res.status(200).json({ courses: response })
@@ -24,3 +25,5 @@ export default async (req, res) => {
     res.status(401).send("Method not supported.")
   }
 }
+
+export default auth(courses)

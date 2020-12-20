@@ -1,6 +1,7 @@
 import React, { Component } from "react"
-import { Button, Dropdown, Icon, Label, Placeholder, Segment } from "semantic-ui-react"
 import { addAssignmentById, deleteAssignmentById, getCoursesByStudentId } from "../api"
+import handleError from "../util/handleError"
+import { Button, Dropdown, Icon, Label, Placeholder, Segment } from "semantic-ui-react"
 import style from "../styles/StudentList.module.scss"
 
 export default class StudentList extends Component {
@@ -21,7 +22,7 @@ export default class StudentList extends Component {
       await addAssignmentById(id, course_id)
       await this.getCoursesDetail()
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
   }
 
@@ -30,7 +31,7 @@ export default class StudentList extends Component {
       await deleteAssignmentById(id)
       await this.getCoursesDetail()
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
   }
 
@@ -40,7 +41,7 @@ export default class StudentList extends Component {
       const res = await getCoursesByStudentId(student.id)
       this.setState({ courses: res.data.courses })
     } catch (error) {
-      console.log(error)
+      handleError(error)
     }
   }
 
@@ -71,7 +72,11 @@ export default class StudentList extends Component {
                   <p className={style.subTitle}>Courses:</p>
                   {attendCourses.map((v) => (
                     <p className={style.assignment} key={v.assignment_id}>
-                      <Label as="a" size="large" onClick={() => this.handleDeleteAssignment(v.assignment_id)}>
+                      <Label
+                        as="a"
+                        size="large"
+                        onClick={() => this.handleDeleteAssignment(v.assignment_id)}
+                      >
                         {v.course_name}
                         <Icon name="delete" />
                       </Label>
@@ -85,13 +90,22 @@ export default class StudentList extends Component {
                 <Dropdown text="Add Course" className="teal" floating button>
                   <Dropdown.Menu>
                     {remainingCourses.map((v) => (
-                      <Dropdown.Item key={v.course_id} onClick={() => this.handleAddAssignment(v.course_id)}>
+                      <Dropdown.Item
+                        key={v.course_id}
+                        onClick={() => this.handleAddAssignment(v.course_id)}
+                      >
                         {v.course_name}
                       </Dropdown.Item>
                     ))}
                   </Dropdown.Menu>
                 </Dropdown>
-                <Button floated="right" negative icon labelPosition="right" onClick={() => handleDeleteStudent(student.id)}>
+                <Button
+                  floated="right"
+                  negative
+                  icon
+                  labelPosition="right"
+                  onClick={() => handleDeleteStudent(student.id)}
+                >
                   Remove Student
                   <Icon name="trash" />
                 </Button>

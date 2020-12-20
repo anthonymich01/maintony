@@ -5,10 +5,6 @@ import style from "../src/styles/Login.module.scss"
 import { login } from "../src/util/auth"
 
 export default class Login extends Component {
-  static async getInitialProps(ctx) {
-    return {}
-  }
-
   state = {
     username: "",
     usernameR: "",

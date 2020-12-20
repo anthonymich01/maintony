@@ -1,6 +1,11 @@
-import { deleteAssignment, addAssignment, checkDuplicatedAssignment } from "../../src/controllers/Assignment"
+import {
+  deleteAssignment,
+  addAssignment,
+  checkDuplicatedAssignment
+} from "../../src/controllers/Assignment"
+import auth from "../../src/middleware/auth"
 
-export default async (req, res) => {
+const assignments = async (req, res) => {
   if (req.method === "POST") {
     const { student_id, course_id } = req.body
     const responseCheck = await checkDuplicatedAssignment(student_id, course_id)
@@ -25,3 +30,5 @@ export default async (req, res) => {
     res.status(401).send("Method not supported.")
   }
 }
+
+export default auth(assignments)
