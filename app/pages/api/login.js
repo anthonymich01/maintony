@@ -7,9 +7,9 @@ export default async (req, res) => {
     if (response.access_token) {
       res.status(200).json(response)
     } else {
-      res.status(500).send("Credential Error.")
+      res.status(403).send("Credential Error.")
     }
   } else {
-    res.status(401).send("Method not supported.")
+    res.status(405).send("Method not supported.")
   }
 }

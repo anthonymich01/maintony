@@ -23,7 +23,7 @@ export const getCoursesListByStudentId = async (id) => {
 
 export const addCourse = async (name) => {
   try {
-    const response = await db.query(addCourseByName, [name])
+    await db.query(addCourseByName, [name])
     return true
   } catch (error) {
     console.log(error)

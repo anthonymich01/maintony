@@ -75,3 +75,7 @@ INSERT INTO "courses" ("name") VALUES ('Agricultural Engineering'),
                                       ('Computer Engineering'),
                                       ('Construction Engineering'),
                                       ('Electrical Engineering');
+
+INSERT INTO "users" ("username", "password")
+VALUES ('maintony', '$2b$10$h43R8JOD.2Gi9mJU1h01X.G302cDwU14bHtuP2OVn.uwCVuRVNOki'),
+       ('test', '$2b$10$S/3QYoPijnPfM0aZhzktwufaC7aC4c4GPAxAwUEF6.lh03dc4K4Hy')

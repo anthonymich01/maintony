@@ -11,7 +11,7 @@ const courses = async (req, res) => {
     if (response) {
       res.status(200).send("Successfully Add Course.")
     } else {
-      res.status(500).send("Fail to Add Course.")
+      res.status(403).send("Fail to Add Course.")
     }
   } else if (req.method === "DELETE") {
     const { id } = req.query
@@ -19,10 +19,10 @@ const courses = async (req, res) => {
     if (response) {
       res.status(200).send("Successfully Delete Course.")
     } else {
-      res.status(500).send("Fail to Delete Course.")
+      res.status(403).send("Fail to Delete Course.")
     }
   } else {
-    res.status(401).send("Method not supported.")
+    res.status(405).send("Method not supported.")
   }
 }
 

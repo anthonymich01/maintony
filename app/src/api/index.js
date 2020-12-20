@@ -46,13 +46,15 @@ export const getCourses = () => {
   return api.get("/courses")
 }
 
-export const getCoursesByStudentId = (id) => {
-  return api.get(`/students/${id}`)
-}
-
 export const deleteCourseById = (id) => {
   return api.delete("/courses", {
     params: { id }
+  })
+}
+
+export const getCoursesByStudentId = (student_id) => {
+  return api.get("/assignments", {
+    params: { student_id }
   })
 }
 

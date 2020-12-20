@@ -39,6 +39,20 @@ export default class Layout extends Component {
               </Menu.Item>
             </Menu>
           </div>
+          <div className={style.sidebarMobile}>
+            <p onClick={() => Router.push("/")}>
+              <Icon name="home" size="large" fitted />
+            </p>
+            <p onClick={() => Router.push("/students")}>
+              <Icon name="users" size="large" fitted />
+            </p>
+            <p onClick={() => Router.push("/courses")}>
+              <Icon name="book" size="large" fitted />
+            </p>
+            <p onClick={logout}>
+              <Icon name="sign out" size="large" fitted />
+            </p>
+          </div>
           <div className={style.content}>
             <p className={style.contentTitle}>{contentTitle}</p>
             {children}

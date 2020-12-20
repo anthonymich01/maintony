@@ -17,10 +17,12 @@ class Students extends Component {
   }
 
   handleAddStudent = async () => {
-    const { s } = this.state
+    const { s, page } = this.state
     const trimmedName = s.trim()
     try {
       await addStudent(trimmedName)
+      const res = await getStudents(LIMIT, page - 1)
+      this.setState({ students: res.data.students })
     } catch (error) {
       handleError(error)
     }
@@ -31,7 +33,7 @@ class Students extends Component {
     const { page } = this.state
     try {
       await deleteStudentById(id)
-      const res = await getStudents(LIMIT, page)
+      const res = await getStudents(LIMIT, page - 1)
       this.setState({ students: res.data.students })
     } catch (error) {
       handleError(error)

@@ -21,6 +21,25 @@
     }
   }
 
+  .sidebarMobile {
+    display: none;
+    width: 50px;
+    height: 100%;
+    padding: 5px;
+    background-color: $c-darkest;
+    color: $c-light;
+
+    p {
+      text-align: center;
+      padding-bottom: 5px;
+      cursor: pointer;
+
+      &:first-child {
+        margin-top: 30px;
+      }
+    }
+  }
+
   .content {
     float: right;
     overflow-y: auto;
@@ -35,5 +54,18 @@
       font-weight: 700;
       margin-bottom: 20px;
     }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .sidebar {
+    display: none !important;
+  }
+  .sidebarMobile {
+    float: left !important;
+    display: unset !important;
+  }
+  .content {
+    width: calc(100% - 50px) !important;
   }
 }

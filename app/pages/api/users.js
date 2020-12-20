@@ -7,10 +7,10 @@ const users = async (req, res) => {
     if (response) {
       res.status(200).json({ id: response })
     } else {
-      res.status(500).send("User is wrong.")
+      res.status(403).send("User Credential is invalid.")
     }
   } else {
-    res.status(401).send("Method not supported.")
+    res.status(405).send("Method not supported.")
   }
 }
 

@@ -23,6 +23,12 @@ services:
       - /usr/src/app/.next
     env_file:
       - ./app/.env
+    environment:
+      PGHOST: db
+      PGDATABASE: maintony
+      PGUSER: anthony
+      PGPASSWORD: anthony
+      NEXT_PUBLIC_BASE_URL: http://localhost:9101
     depends_on:
       - db
     ports:

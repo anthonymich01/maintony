@@ -16,7 +16,7 @@ export const getUserByToken = async (token) => {
     }
     return null
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
     return null
   }
 }
